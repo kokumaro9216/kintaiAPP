@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>アカウント登録</title>
+	</head>
+
+	<body>
+		<h1 th:inline="text">アカウント登録</h1>
+		<form th:action="@{/entry}" method="post">
+			<input type="text" name="accountID">アカウントID
+			<br/>
+			<input type="password" name="password">パスワード
+			<br/>
+			<input type="submit" name="login" value="登録">
+		</form>
+
+		<!-- home.htmlへ遷移 -->
+		<button onclick="location.href='./login.html'">戻る</button>
+
+	</body>
+
+</html>
