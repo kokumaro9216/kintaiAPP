@@ -6,20 +6,22 @@
 </head>
 <body>
 	<h1>出力画面</h1>
-		<input type="month" name="start" style="display:inline;">～<input type="month" name="end">
+		<input type="month" id="start"  style="display:inline;">～<input type="month" id="end">
 		<br>
-		<div th:text style="display:inline;">合計実働時間：</div>
-		<div th:text="${sumWorkTime}" style="display:inline;"></div>
+		<div style="display:inline;">合計実働時間：</div>
+		<div id=sumWorkTime style="display:inline;"></div>
 		<br>
-		<div th:text style="display:inline;">月平均実働時間：</div>
+		<div style="display:inline;">月平均実働時間：</div>
 		<div th:text="${averageWorkTime}" style="display:inline;"></div>
 		<br>
-		<div th:text style="display:inline;">合計時間外労働時間：</div>
+		<div style="display:inline;">合計時間外労働時間：</div>
 		<div th:text="${sumOvertimeWorkTime}" style="display:inline;"></div>
 		<br>
-		<div th:text style="display:inline;">月平均時間外労働時間：</div>
+		<div style="display:inline;">月平均時間外労働時間：</div>
 		<div th:text="${averageOvertimeWorkTime}" style="display:inline;"></div>
 		<br>
 		<button onclick="location.href='./home.html'">戻る</button>
+		
+		<script th:src="@{/js/output.js}"></script>
 </body>
 </html>
