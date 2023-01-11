@@ -9,17 +9,18 @@
 <body>
     <h1 th:inline="text">勤怠管理アプリ</h1>
 	<form th:action="@{/input}" method="get">
-	    <input type="text" name="accountID">アカウントID
+	    <input type="text" id="AccountID" placeholder="AccountID" required="required" name="AccountID">アカウントID
 	    <br/>
-	    <input type="password" name="password">パスワード
+	    <input type="password" id="Password" placeholder="Password" required="required" name="password">パスワード
 	    <br/>
-		<!--
 	    <input type="submit" name="login" value="ログイン">
-		-->
+		
 	</form>
 
+	<!--
 	<button onclick="location.href='./input.html'">ログイン</button>
 	<br/>
+	-->
 	<!-- account-entry.htmlへ遷移 -->
 	<button onclick="location.href='./account-entry.html'">アカウント登録</button>
 
