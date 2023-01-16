@@ -12,12 +12,12 @@ public class MainController {
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "input";
     }
 
     @RequestMapping("/logout")
     public String logout() {
-        return "logout";
+        return "home";
     }
 
     @RequestMapping("/input")
@@ -32,6 +32,6 @@ public class MainController {
 
     @RequestMapping("/account")
     public String account() {
-        return "account";
+        return "account-entry";
     }
 }

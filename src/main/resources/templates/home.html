@@ -8,10 +8,15 @@
 
 <body>
     <h1 th:inline="text">勤怠管理アプリ</h1>
-	<form th:action="@{/input}" method="get">
-	    <input type="text" id="AccountID" placeholder="AccountID" required="required" name="AccountID">アカウントID
+
+	<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+		last exception: <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+	</div>
+
+	<form action="#" th:action="@{/login}" method="post">
+	    <input type="text" id="userid" placeholder="userid" required="required" name="userid">アカウントID
 	    <br/>
-	    <input type="password" id="Password" placeholder="Password" required="required" name="password">パスワード
+	    <input type="password" id="password" placeholder="password" required="required" name="password">パスワード
 	    <br/>
 	    <input type="submit" name="login" value="ログイン">
 		

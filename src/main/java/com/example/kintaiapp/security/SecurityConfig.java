@@ -21,8 +21,8 @@ public class SecurityConfig {
     @Autowired
     UserDetailsService userDetailsService;
 
-    // //***パスワードエンコーダーを使う場合は①と②をコメントアウトする***
-    // //①パスワードのエンコーダー
+    // ***パスワードエンコーダーを使う場合は①と②をコメントアウトする***
+    // ①パスワードのエンコーダー
     // @Bean
     // public PasswordEncoder passwordEncoder() {
     // return new BCryptPasswordEncoder();
@@ -33,7 +33,7 @@ public class SecurityConfig {
             throws Exception {
         // ***認証にUserDetailServiceを使う
         auth.userDetailsService(userDetailsService);
-        // //②
+        // ②
         // auth.userDetailsService(userDetailsService);
         // .passwordEncoder(passwordEncoder());
     }
