@@ -7,6 +7,10 @@ public class userinfoDto {
 
     @Getter
     @Setter
-    private Userinfo userinfo = new Userinfo();
+    private String AccountID;
+
+    @Getter
+    @Setter
+    private String Password;
 
 }

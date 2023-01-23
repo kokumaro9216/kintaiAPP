@@ -16,7 +16,7 @@ public class UserInfo {
         return UserInfo.AccountID;
     }
 
-    public static void setAccountID(String accountID) {
+    public void setAccountID(String accountID) {
         AccountID = accountID;
     }
 
@@ -24,12 +24,16 @@ public class UserInfo {
         return UserInfo.Password;
     }
 
-    public static void setPassword(String password) {
+    public void setPassword(String password) {
         Password = password;
     }
 
     public boolean isAdmin() {
         return Admin;
+    }
+
+    public UserInfo get(int i) {
+        return null;
     }
 
 }

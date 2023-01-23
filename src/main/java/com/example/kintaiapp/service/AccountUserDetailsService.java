@@ -16,12 +16,16 @@ import org.springframework.stereotype.Service;
 import com.example.kintaiapp.repository.UserInfoRepository;
 import com.example.kintaiapp.model.entity.UserInfo;
 import com.example.kintaiapp.security.AccountUserDetails;
+import com.example.kintaiapp.model.dto.userinfoDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
 public class AccountUserDetailsService implements UserDetailsService {
+
+    // @Autowired
+    // private UserInfoRepository UserInfoRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(AccountUserDetailsService.class);
 
@@ -38,17 +42,18 @@ public class AccountUserDetailsService implements UserDetailsService {
         }
 
         // 本来ならDBアクセスしてパスワードを取得するところだが、サンプルなのでプログラム直書き
-        UserInfo userInfo;
+        UserInfo userInfo = new UserInfo();
         String password;
         switch (username) {
             case "login":
 
-                userInfo = Optional.ofNullable(UserInfoRepository.findByUserId(username))
-                        .orElseThrow(() -> new UsernameNotFoundException("ユーザが見つかりません")).get(0);
+                // userInfo =
+                // Optional.ofNullable(com.example.kintaiapp.repository.UserInfoRepository.findByUserId(username))
+                // .orElseThrow(() -> new UsernameNotFoundException("ユーザが見つかりません")).get(0);
 
                 password = "password"; // パスワードは「password」
-                UserInfo.setAccountID(username);
-                UserInfo.setPassword(password);
+                userInfo.setAccountID(username);
+                userInfo.setPassword(password);
 
                 break;
             default:

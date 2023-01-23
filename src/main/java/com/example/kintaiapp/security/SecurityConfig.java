@@ -51,7 +51,9 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/home", "/account").permitAll()
+                        .requestMatchers("/home").permitAll()
+                        .requestMatchers("/account").permitAll()
+                        .requestMatchers("/account-entry.html").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }

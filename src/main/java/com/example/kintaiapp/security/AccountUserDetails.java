@@ -6,6 +6,9 @@ import org.springframework.security.core.userdetails.User;
 
 import com.example.kintaiapp.model.entity.UserInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class AccountUserDetails extends User {
 
     private UserInfo userInfo;
