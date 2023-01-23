@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>preset</title>
+</head>
+
+<body>
+    <h3 th:inline="text">プリセットを使用する</h1>
+        <form th:action="@{/nyusyukin}" method="get">
+            <!-- プリセットの配列(出力) -->
+            <input type="submit" name="reflect" value="選択を反映">
+            <input type="submit" name="reflectAll" value="全平日に反映">
+            <input type="submit" name="delete" value="選択を削除">
+            <br/>
+        </form>
+
+        <h3 th:inline="text">プリセットを使用しない</h1>
+            <form th:action="@{/nyusyukin}" method="get">
+                <!-- 出勤 -->
+                <label>出勤</label>
+                <input type="text" name="syukkin" ">
+		<label>退勤</label>
+	    <input type="text " name="taikin "">
+                <label>休憩</label>
+                <input type="text" name="rest" ">
+		<label>備考</label>
+		<input type="text " name="note "">
+                <label>プリセット</label>
+                <input type="text" name="preset" ">
+		<br/>
+	    <input type="submit " name="accountID " value="登録して反映 ">
+	    <input type="submit " name="password " value="登録せず反映 ">
+	    <input type="submit " name="login " value="登録のみ ">
+		<br/>
+	</form>
+
+	  <!-- home.htmlへ遷移 -->
+	  <button onclick="location.href='./home.html' ">戻る</button>
+
+</body>
+
+</html>

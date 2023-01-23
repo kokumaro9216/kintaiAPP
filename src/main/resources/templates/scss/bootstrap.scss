@@ -1,0 +1,90 @@
+@import "mixins/banner";
+@include bsBanner("");
+// scss-docs-start import-stack
+// Configuration
+@import "functions";
+@import "variables";
+@import "maps";
+@import "mixins";
+@import "utilities";
+// Layout & components
+@import "root";
+@import "reboot";
+@import "type";
+@import "images";
+@import "containers";
+@import "grid";
+@import "tables";
+@import "forms";
+@import "buttons";
+@import "transitions";
+@import "dropdown";
+@import "button-group";
+@import "nav";
+@import "navbar";
+@import "card";
+@import "accordion";
+@import "breadcrumb";
+@import "pagination";
+@import "badge";
+@import "alert";
+@import "progress";
+@import "list-group";
+@import "close";
+@import "toasts";
+@import "modal";
+@import "tooltip";
+@import "popover";
+@import "carousel";
+@import "spinners";
+@import "offcanvas";
+@import "placeholders";
+// Helpers
+@import "helpers";
+// Utilities
+@import "utilities/api";
+// scss-docs-end import-stack
+body {
+    background-color: #f2f2f2;
+}
+
+.login {
+    margin-top: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0 30px;
+}
+
+button {
+    margin-top: 1em;
+}
+
+.login-reminder {
+    text-align: center;
+    margin-top: .5em;
+    a {
+        color: $body-color;
+        font-size: .8em;
+    }
+}
+
+.base {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.class1 {
+    background-color: #C2F2DA;
+    width: 50%;
+}
+
+.class2 {
+    display: flex;
+    flex-direction: #F2F2DA;
+    width: 50%;
+}

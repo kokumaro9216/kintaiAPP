@@ -1,68 +1,23 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="ja">
 
-	<head>
-		<meta charset="UTF-8" />
-		<title>勤怠入力</title>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>勤怠入力</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
 
-	<body>
-		<h3 th:inline="text">プリセットを使用する</h3>
-		<form th:action="@{/preset}" method="get">
-			<!-- プリセットの配列(出力) -->
-			<input type="submit" name="reflect" value="選択を反映">
-			<input type="submit" name="reflectAll" value="全平日に反映">
-			<input type="submit" name="delete" value="選択を削除">
-			<br/>
-		</form>
+<body>
+    <div class="base">
+        <div class="class1">
+            <iframe src="input-preset.html" width="100%" height="100%"></iframe>
 
-		<h3 th:inline="text">プリセットを使用しない</h3>
-		<form th:action="@{/no-preset}" method="get">
-			<!-- 出勤 -->
-			<label>出勤</label>
-			<input type="text" name="syukkin"">
-			<label>退勤</label>
-			<input type="text" name="taikin"">
-			<label>休憩</label>
-			<input type="text" name="rest"">
-			<label>備考</label>
-			<input type="text" name="note"">
-			<label>プリセット</label>
-			<input type="text" name="preset"">
-			<br/>
-			<input type="submit" name="accountID" value="登録して反映">
-			<input type="submit" name="password" value="登録せず反映">
-			<input type="submit" name="login" value="登録のみ">
-			<br/>
-		</form>
+        </div>
+        <div class="class2">
+            <iframe src="input-timetable.html" width="100%" height="100%"></iframe>
 
-		<!-- home.htmlへ遷移 -->
-		<button onclick="location.href='./login.html'">戻る</button>
-
-		<table border="1">
-			<tr>
-				<th>　</th>
-				<th>日付</th>
-				<th>曜日</th>
-				<th>出勤時間</th>
-				<th>退勤時間</th>
-				<th>休憩時間</th>
-				<th>実働時間</th>
-				<th>時間外</th>
-				<th>備考</th>
-			</tr>
-			<tr th:each="data : ${kinmuhyouList}" th:object="${data}">
-				<td th:text="*{check}"></td>
-				<td th:text="*{date}"></td>
-				<td th:text="*{week}"></td>
-				<td th:text="*{syukkin}"></td>
-				<td th:text="*{taikin}"></td>
-				<td th:text="*{rest}"></td>
-				<td th:text="*{work_time}"></td>
-				<td th:text="*{work_out_time}"></td>
-				<td th:text="*{note}"></td>
-			</tr>
-		</table>
-	</body>
+        </div>
+    </div>
+</body>
 
 </html>
