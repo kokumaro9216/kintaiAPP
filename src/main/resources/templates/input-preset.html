@@ -4,41 +4,160 @@
 <head>
     <meta charset="UTF-8" />
     <title>preset</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/all_check.js"></script>
 </head>
+<style type="text/css">
+    <!-- body {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        text-align: left;
+    }
+    
+    table {
+        width: 800px;
+        margin: 0 auto;
+        text-align: left;
+        border-top: #CCC solid 1px;
+        border-left: #CCC solid 1px;
+    }
+    
+    th {
+        padding: 15px;
+        margin: 0 auto;
+        text-align: left;
+        vertical-align: middle;
+        background: #fbe3dc;
+        font-size: 12px;
+        font-weight: normal;
+        border-right: #CCC solid 1px;
+        border-bottom: #CCC solid 1px;
+    }
+    
+    td {
+        padding: 15px;
+        margin: 0 auto;
+        text-align: left;
+        vertical-align: middle;
+        background: #FFF;
+        border-right: #CCC solid 1px;
+        border-bottom: #CCC solid 1px;
+    }
+    
+    td:first-child {
+        width: 90px;
+    }
+    
+    input {
+        cursor: pointer;
+    }
+    
+    thead th span {
+        display: block;
+        padding: 2px 5px;
+        background: #666;
+        color: #FFF;
+        font-size: 8px;
+        text-align: left;
+        margin-bottom: 3px;
+        border-radius: 3px;
+    }
+    
+    -->
+</style>
 
 <body>
-    <h3 th:inline="text">プリセットを使用する</h1>
-        <form th:action="@{/nyusyukin}" method="get">
-            <!-- プリセットの配列(出力) -->
-            <input type="submit" name="reflect" value="選択を反映">
-            <input type="submit" name="reflectAll" value="全平日に反映">
-            <input type="submit" name="delete" value="選択を削除">
-            <br/>
-        </form>
+    <h3 th:inline="text">プリセットを使用する</h3>
+    <form th:action="@{/input}" method="post">
+        <!-- プリセットの配列(出力) -->
+        <input type="submit" name="reflect" value="選択を反映">
+        <input type="submit" name="reflectAll" value="全平日に反映">
+        <input type="submit" name="delete" value="選択を削除">
+        <br/>
+    </form>
 
-        <h3 th:inline="text">プリセットを使用しない</h1>
-            <form th:action="@{/nyusyukin}" method="get">
-                <!-- 出勤 -->
-                <label>出勤</label>
-                <input type="text" name="syukkin" ">
-		<label>退勤</label>
-	    <input type="text " name="taikin "">
-                <label>休憩</label>
-                <input type="text" name="rest" ">
-		<label>備考</label>
-		<input type="text " name="note "">
-                <label>プリセット</label>
-                <input type="text" name="preset" ">
-		<br/>
-	    <input type="submit " name="accountID " value="登録して反映 ">
-	    <input type="submit " name="password " value="登録せず反映 ">
-	    <input type="submit " name="login " value="登録のみ ">
-		<br/>
-	</form>
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr>
+                <th>
+                    <span>▼全てチェック</span>
+                    <input type="checkbox" id="all_check_key" />
+                </th>
+                <th>出勤</th>
+                <th>退勤</th>
+                <th>休憩</th>
+                <th>備考</th>
+                <th>プリセット名</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>09:00</td>
+                <td>18:00</td>
+                <td>01:00</td>
+                <td></td>
+                <td>早出勤務</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>10:00</td>
+                <td>19:00</td>
+                <td>01:00</td>
+                <td></td>
+                <td>通常勤務</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 
-	  <!-- home.htmlへ遷移 -->
-	  <button onclick="location.href='./home.html' ">戻る</button>
+    <h3 th:inline="text">プリセットを使用しない</h3>
+    <form th:action="@{/input}" method="post">
+        <!-- 出勤 -->
+        <label>出勤</label>
+        <input type="text" name="syukkin">
+        <label>退勤</label>
+        <input type="text " name="taikin ">
+        <label>休憩</label>
+        <input type="text" name="rest">
+        <br/>
+        <label>備考</label>
+        <input type="text " name="note ">
+        <label>プリセット名</label>
+        <input type="text" name="preset">
+        <br/>
+        <button class="btn btn-primary w-100 " name="register-reflect" type="submit ">登録して反映</button>
+        <button class="btn btn-primary w-100 " name="reflect" type="submit ">登録せず反映</button>
+        <button class="btn btn-primary w-100 " name="register" type="submit ">登録のみ</button>
+        <br/>
+    </form>
 
+    <!-- home.htmlへ遷移 -->
+    <button onclick="location.href='./home.html' ">戻る</button>
 </body>
 
 </html>
