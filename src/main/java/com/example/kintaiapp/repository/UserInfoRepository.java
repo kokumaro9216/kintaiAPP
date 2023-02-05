@@ -1,6 +1,6 @@
 package com.example.kintaiapp.repository;
 
-import com.example.kintaiapp.model.entity.UserInfo;
+// TODO POM.xmlにspring-boot-starter-data-jpa（間違っているかも）をdependencyに追加すればインポートできるようになる
 //import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserInfoRepository {
