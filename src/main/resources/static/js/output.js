@@ -29,10 +29,22 @@ function getSumWorkTime(){
 }
 
 function getAverageWorkTime(){
-	var sum = 0
-	for(i=0; i<array.length; i++){
-		sum = sum + array[i][1].getTime()-array[i][0].getTime()-array[i][2]*60*60*1000
-	}
-	return sum/(1000 * 60 * 60)/(end-start)
+	var sum = getSumWorkTime();
+	return sum/((end.getTime()-start.getTime())*60*60*1000)
+}
 
+function getSumOvertimeWorkTime(){
+	var sum = 0;
+	for(i=0; i<array.length; i++){
+		overtimeworkPerDay = array[i][1].getTime()-array[i][0].getTime()-array[i][2]*60*60*1000-1000*60*60*9
+		if(overtimeworkPerDay > 0){
+			sum = sum + overtimeworkPerDay;
+		}
+	}
+	return sum;
+}
+
+function getAverageOvertimeWorkTime(){
+	var sum = getSumOvertimeWorkTime();
+	return sum/((end.getTime()-start.getTime())*60*60*1000)
 }
