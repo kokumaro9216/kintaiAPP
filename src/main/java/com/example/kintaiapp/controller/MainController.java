@@ -5,14 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
+    @RequestMapping("/home")
+    public String home() {
+        return "home";
+    }
+
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "input";
     }
 
     @RequestMapping("/logout")
     public String logout() {
-        return "logout";
+        return "home";
     }
 
     @RequestMapping("/input")
@@ -27,6 +32,6 @@ public class MainController {
 
     @RequestMapping("/account")
     public String account() {
-        return "account";
+        return "account-entry";
     }
 }
