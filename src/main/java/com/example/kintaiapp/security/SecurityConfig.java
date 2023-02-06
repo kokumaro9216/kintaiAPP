@@ -43,13 +43,13 @@ public class SecurityConfig {
         http.formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/home")
-                .defaultSuccessUrl("/input")
+                .defaultSuccessUrl("/input", true)
                 .usernameParameter("userid")
                 .passwordParameter("password")
                 .failureUrl("/home?error")
                 .permitAll())
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/"))
+                        .logoutSuccessUrl("/home"))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/account").permitAll()
