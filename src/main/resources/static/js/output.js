@@ -1,5 +1,28 @@
 const start = document.getElementById('start');
 const end = document.getElementById('end');
+let checkButton = document.getElementById('checkButton');
+checkButton.addEventListener('click', bottunClick);
+
+function diffMonth(d1, d2){
+	let d1Month, d2Month;
+   
+	d1Month = d1.slice( 0, 4 ) * 12 + d1.slice(-2);
+	d2Month = d2.slice( 0, 4 ) * 12 + d2.slice(-2);
+   
+	return d2Month - d1Month;
+  }
+
+function bottunClick(){
+	msg.innerText = '開始 : ' + start.value + ' 終了 : ' + end.value + '期間 : ' + diffMonth(start.value, end.value);
+	var sumWorkTime = document.getElementById("sumWorkTime");
+	sumWorkTime.innerHTML = getSumWorkTime();
+	var averageWorkTime = document.getElementById("averageWorkTime");
+	averageWorkTime.innerHTML = getAverageWorkTime();
+	var sumOvertimeWorkTime = document.getElementById("sumOvertimeWorkTime");
+	sumOvertimeWorkTime.innerHTML = getSumOvertimeWorkTime();
+	var averageOvertimeWorkTime = document.getElementById("averageOvertimeWorkTime");
+	averageOvertimeWorkTime.innerHTML = getAverageOvertimeWorkTime();
+  }
 
 var date1 = new Date(2022, 12, 30, 9, 00, 00);
 var date2 = new Date(2022, 12, 30, 18, 00, 00);
@@ -7,17 +30,6 @@ var rest = 1
 var date3 = new Date(2022, 12, 31, 9, 00, 00);
 var date4 = new Date(2022, 12, 31, 18, 00, 00);
 var array = [[date1, date2, rest], [date3, date4, rest]]
-
-//合計実働時間
-var sumWorkTime = document.getElementById("sumWorkTime");
-sumWorkTime.innerHTML = getSumWorkTime() ;
-//月平均実働時間
-let averageWorkTime = document.getElementById("averageWorkTime");
-averageWorkTime.innerHTML = getAverageWorkTime() ;
-//合計時間外労働時間
-let sumOvertimeWorkTime = 0;
-//月平均時間外労働時間
-let averageOvertimeWorkTime = 0;
 
 
 function getSumWorkTime(){
@@ -30,7 +42,7 @@ function getSumWorkTime(){
 
 function getAverageWorkTime(){
 	var sum = getSumWorkTime();
-	return sum/((end.getTime()-start.getTime())*60*60*1000)
+	return sum/(diffMonth(start.value, end.value))
 }
 
 function getSumOvertimeWorkTime(){
@@ -46,5 +58,5 @@ function getSumOvertimeWorkTime(){
 
 function getAverageOvertimeWorkTime(){
 	var sum = getSumOvertimeWorkTime();
-	return sum/((end.getTime()-start.getTime())*60*60*1000)
+	return sum/(diffMonth(start.value, end.value)*60*60*1000)
 }
