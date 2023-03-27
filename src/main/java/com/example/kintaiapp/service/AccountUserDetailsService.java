@@ -1,22 +1,20 @@
 package com.example.kintaiapp.service;
 
-import java.util.Collections;
 import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.kintaiapp.repository.UserInfoRepository;
+import com.example.kintaiapp.repository.AccountRepository;
+import com.example.kintaiapp.model.entity.Account;
 import com.example.kintaiapp.model.entity.UserInfo;
 import com.example.kintaiapp.security.AccountUserDetails;
-import com.example.kintaiapp.model.dto.userinfoDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,44 +22,41 @@ import org.slf4j.LoggerFactory;
 @Service
 public class AccountUserDetailsService implements UserDetailsService {
 
-    // @Autowired
-    // private UserInfoRepository UserInfoRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(AccountUserDetailsService.class);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // DBからユーザ情報を取得し、ユーザ情報と権限情報をセットする
-        // UserInfo userInfo =
-        // Optional.ofNullable(UserInforepository.findByUserId(username))
-        // .orElseThrow(() -> new UsernameNotFoundException("ユーザが見つかりません")).get(0);
-        // return new AccountUserDetails(userInfo, getAuthorities(userInfo));
 
+        // id入力がされてない場合はエラー
         if (username == null) {
             throw new UsernameNotFoundException("empty");
         }
 
-        // 本来ならDBアクセスしてパスワードを取得するところだが、サンプルなのでプログラム直書き
+        // DBアクセスしてパスワードを取得する
+        // loginのみ簡単にログインできるよう残している
         UserInfo userInfo = new UserInfo();
+        Account account = new Account();
         String password;
-        switch (username) {
-            case "login":
 
-                // userInfo =
-                // Optional.ofNullable(com.example.kintaiapp.repository.UserInfoRepository.findByUserId(username))
-                // .orElseThrow(() -> new UsernameNotFoundException("ユーザが見つかりません")).get(0);
+        if (username == "login") {
+            password = "password"; // パスワードは「password」
+            userInfo.setAccountID(username);
+            userInfo.setPassword(password);
 
-                password = "password"; // パスワードは「password」
-                userInfo.setAccountID(username);
-                userInfo.setPassword(password);
+        } else {
+            account = Optional.ofNullable(accountRepository.findAccountByUserId(username).get())
+                    .orElseThrow(() -> new UsernameNotFoundException("not found"));
 
-                break;
-            default:
-                throw new UsernameNotFoundException("not found");
+            userInfo.setAccountID(username);
+            userInfo.setPassword(account.getPassword());
+
         }
 
-        logger.info(username);
-        logger.info(password);
+        logger.info(userInfo.getAccountID());
+        logger.info(userInfo.getPassword());
 
         return new AccountUserDetails(userInfo, getAuthorities(userInfo));
 
