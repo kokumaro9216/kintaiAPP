@@ -1,7 +1,6 @@
 var mytable = document.getElementById("tbl");
 
 // JavaScriptで以下json形式を元に勤怠をテーブル表示する
-
 const timeTableDate = {
     tableDate: [{
             "date": "12/01",
