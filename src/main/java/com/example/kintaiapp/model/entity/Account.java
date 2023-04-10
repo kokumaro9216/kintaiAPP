@@ -1,6 +1,6 @@
 package com.example.kintaiapp.model.entity;
 
-import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,8 +19,8 @@ public class Account {
     private Integer No;
 
     @Id
-    @Column(name = "ID")
-    private String ID;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -32,9 +32,9 @@ public class Account {
     private String password;
 
     @Column(name = "creation_date")
-    private Data creation_date;
+    private LocalDate creation_date;
 
     @Column(name = "updated_date")
-    private Data updated_date;
+    private LocalDate updated_date;
 
 }

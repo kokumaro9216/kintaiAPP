@@ -10,16 +10,16 @@ import com.example.kintaiapp.model.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    // アカウントSQL
-    // ユーザー情報取得
-    String sql1 = "SELECT"
-            + " *"
-            + " FROM"
-            + " public.account"
-            + " WHERE"
-            + " id = :userid";
+        // アカウントSQL
+        // ユーザー情報取得
+        String sql1 = "SELECT"
+                        + " *"
+                        + " FROM"
+                        + " public.account"
+                        + " WHERE"
+                        + " id = :userid";
 
-    @Query(value = sql1, nativeQuery = true)
-    public Optional<Account> findAccountByUserId(
-            @Param("userid") String userid);
+        @Query(value = sql1, nativeQuery = true)
+        public Optional<Account> findAccountByUserId(
+                        @Param("userid") String userid);
 }

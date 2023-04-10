@@ -41,7 +41,7 @@ public class AccountUserDetailsService implements UserDetailsService {
         Account account = new Account();
         String password;
 
-        if (username == "login") {
+        if (username.equals("login")) {
             password = "password"; // パスワードは「password」
             userInfo.setAccountID(username);
             userInfo.setPassword(password);
