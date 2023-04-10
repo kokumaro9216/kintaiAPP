@@ -1,55 +1,42 @@
-var mytable = document.getElementById("presetTbl");
+const columnOrder = ['startTime', 'endTime', 'restTime', 'remarks', 'presetName']
 
-// JavaScriptで以下json形式を元にプリセットをテーブル表示する
-const presetTableDate = {
-        tableDate: [{
-                "startTime": "09:00",
-                "endTime": "18:00",
-                "restTime": "01:00",
-                "remarks": "残業なし",
-                "presetName": "早出勤務"
-            },
-            {
-                "startTime": "10:00",
-                "endTime": "19:00",
-                "restTime": "01:00",
-                "remarks": "残業なし",
-                "presetName": "通常勤務",
-            },
-            {
-                "startTime": "10:00",
-                "endTime": "19:00",
-                "restTime": "01:00",
-                "remarks": "残業なし",
-                "presetName": "通常勤務",
-            }
-        ]
+class Preset {
+    constructor(presetName, startTime, endTime, restTime, remarks) {
+        this.presetName = presetName
+        this.startTime = startTime
+        this.endTime = endTime
+        this.restTime = restTime
+        this.remarks = remarks
     }
-    //alert(mytable);
 
-for (var i in presetTableDate.tableDate) {
+    // クラス内にオーダーを持たせないことで、若干汎用性が高くなる
+    toTr(order) {
+        const tr = document.createElement('tr')
+        order.forEach((col, i) => {
+            const td = document.createElement('td')
+            td.textContent = this[col]
+            tr.appendChild(td)
+        })
+        return tr
+    }
+}
 
-    var ch = Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: i });
-    var mytr = mytable.insertRow(1 + parseInt(i)); // 表を1行追加
+const presetTable = document.getElementById("presetTbl");
+getPreset().forEach((pd, index) => {
+    // 型を意識、HTMLElementList, Element, Nodelist
+    const newTr = pd.toTr(columnOrder)
+    const topCell = newTr.insertCell(0)
+    // チェックボックスはプリセットとの関係が薄いから、Preseとは別で定義してみるとか
+    topCell.appendChild(Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: index }))
+    presetTable.appendChild(newTr)
+})
 
-    //thセルの追加
-    var myth = document.createElement("th");
-    myth.innerHTML = " ";
-    mytr.appendChild(myth);
-
-    //tdセルの追加
-    var mycell0 = mytr.insertCell(0).appendChild(ch);
-    var mycell1 = mytr.insertCell(1);
-    var mycell2 = mytr.insertCell(2);
-    var mycell3 = mytr.insertCell(3);
-    var mycell4 = mytr.insertCell(4);
-    var mycell5 = mytr.insertCell(5);
-
-    //textContentでもいいしinnnerHTMLでもいい
-    //mycell0.textContent = mycell0.appendChild(ch);
-    mycell1.textContent = presetTableDate.tableDate[i].startTime;
-    mycell2.textContent = presetTableDate.tableDate[i].endTime;
-    mycell3.textContent = presetTableDate.tableDate[i].restTime;
-    mycell4.textContent = presetTableDate.tableDate[i].remarks;
-    mycell5.textContent = presetTableDate.tableDate[i].presetName;
+// 関数にしておけばデモデータと本物の差し替えがしやすくなるかな？
+function getPreset() {
+    const presetDemoData = [
+        new Preset('早出勤務', '09:00', '18:00', '01:00', '残業なし'),
+        new Preset('通常勤務', '10:00', '19:00', '01:00', '残業なし'),
+        new Preset('通常勤務', '10:00', '19:00', '01:00', '残業なし'),
+    ]
+    return presetDemoData
 }
