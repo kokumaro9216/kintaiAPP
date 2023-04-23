@@ -22,7 +22,10 @@ function bottunClick(){
 	const startMonth = start.value.substr( 5 )
 	const startDate = new Date(startYear, startMonth -1, "01")
 	const endDate = new Date(endYear, endMonth, "01") -1
+	console.log("a")
 	const array = getDBData(startDate, endDate);
+	console.log("b")
+	console.log(array[0][0])
 	const sumWorkTime = document.getElementById("sumWorkTime");
 	sumWorkTime.innerHTML = getSumWorkTime(array);
 	const averageWorkTime = document.getElementById("averageWorkTime");
@@ -60,11 +63,11 @@ function bottunClick(){
 
 	const arrayData = [data1, data2];
 
-	const arrayDateData = new array();
+	const arrayDateData = new Array();
 	for(i=0; i<arrayData.length; i++){
-		start = new Date(arrayData[i].date + " " + arrayData[i].start);
-		end = new Date(arrayData[i].date + " " + arrayData[i].end);
-		const array = [start, end, arrayData[i].rest, arrayData[i].bikou];
+		var tempStart = new Date(arrayData[i].date + " " + arrayData[i].start);
+		var tempEnd = new Date(arrayData[i].date + " " + arrayData[i].end);
+		const array = [tempStart, tempEnd, arrayData[i].rest, arrayData[i].bikou];
 		arrayDateData.push(array);
 	}
 
@@ -72,9 +75,9 @@ function bottunClick(){
   }
 
 function getSumWorkTime(array){
-	const sum = 0
+	var sum = 0
 	for(i=0; i<array.length; i++){
-		sum = sum + array[i].end.getTime()-array[i].start.getTime()-array[i].rest*60*60*1000
+		sum = sum + array[i][1].getTime()-array[i][0].getTime()-array[i][2]*60*60*1000
 	}
 	return sum/(1000 * 60 * 60)
 }
@@ -85,7 +88,7 @@ function getAverageWorkTime(array){
 }
 
 function getSumOvertimeWorkTime(array){
-	const sum = 0;
+	var sum = 0;
 	for(i=0; i<array.length; i++){
 		overtimeworkPerDay = array[i][1].getTime()-array[i][0].getTime()-array[i][2]*60*60*1000-1000*60*60*9
 		if(overtimeworkPerDay > 0){
@@ -108,8 +111,8 @@ function generate_table(array) {
 	const tbl = document.createElement("table");
 	const tblBody = document.createElement("tbody");
 	const row = document.createElement("tr");
-	const cell = document.createElement("td");
-		const cellText = document.createTextNode("日時");
+	var cell = document.createElement("td");
+		var cellText = document.createTextNode("日時");
 		cell.appendChild(cellText);
 		row.appendChild(cell);
 		cell = document.createElement("td");
