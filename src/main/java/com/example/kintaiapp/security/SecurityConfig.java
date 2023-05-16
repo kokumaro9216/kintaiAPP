@@ -1,17 +1,14 @@
 package com.example.kintaiapp.security;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -51,9 +48,14 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/home"))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/home", "/account", "/account-entry.html").permitAll()
+                        .requestMatchers("/","/home", "/account", "/account-entry.html").permitAll()
                         .requestMatchers("/css/**", "/js/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated())
+                .oauth2Login(oauth2 -> oauth2
+                		.loginPage("/home")
+                		.defaultSuccessUrl("/input", true)
+                		.permitAll()
+                		);
         return http.build();
     }
 }

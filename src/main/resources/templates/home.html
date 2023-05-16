@@ -12,6 +12,13 @@
 	<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
 		last exception: <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
 	</div>
+	
+	<div class="container unauthenticated">
+    	With GitHub: <a href="/oauth2/authorization/github">click here</a>
+	</div>
+	<div class="container authenticated" style="display:none">
+    	Logged in as: <span id="user"></span>
+	</div>
 
 	<form action="#" th:action="@{/login}" method="post">
 	    <input type="text" id="userid" placeholder="userid" required="required" name="userid">アカウントID
@@ -32,3 +39,11 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $.get("/user", function(data) {
+        $("#user").html(data.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+</script>
