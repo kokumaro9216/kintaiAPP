@@ -26,7 +26,7 @@ getPreset().forEach((pd, index) => {
     // 型を意識、HTMLElementList, Element, Nodelist
     const newTr = pd.toTr(columnOrder)
     const topCell = newTr.insertCell(0)
-        // チェックボックスはプリセットとの関係が薄いから、Preseとは別で定義してみるとか
+        // チェックボックスはプリセットとの関係が薄いから、Presetとは別で定義してみるとか
     topCell.appendChild(Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: index }))
     presetTable.appendChild(newTr)
 })
@@ -41,16 +41,34 @@ function getPreset() {
     return presetDemoData
 }
 
-function reflectButton() {
-    alert('選択を反映ボタンの処理');
-}
+// 選択を反映ボタンの処理(プリセット使用)
+document.getElementById('reflect').onclick = function() {
 
+        let element = document.getElementById('reflect');
+        alert("テスト");
 
-function reflectAllButton() {
+    }
+    // 全平日に反映ボタンの処理(プリセット使用)
+document.getElementById('reflectAll').onclick = function() {
     alert('全平日に反映ボタンの処理');
 }
 
-
-function deleteButton() {
+// 選択を削除ボタンの処理(プリセット使用)
+document.getElementById('delete').onclick = function() {
     alert('選択を削除ボタンの処理');
+}
+
+// 登録して反映ボタンの処理(プリセット未使用)
+document.getElementById('entryReflect').onclick = function() {
+    alert('登録して反映ボタンの処理');
+}
+
+// 登録せず反映ボタンの処理(プリセット未使用)
+document.getElementById('notEntryReflect').onclick = function() {
+    alert('登録せず反映ボタンの処理');
+}
+
+// 登録のみボタンの処理(プリセット未使用)
+document.getElementById('entry').onclick = function() {
+    alert('登録のみボタンの処理');
 }

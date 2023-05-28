@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>preset</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../static/js/all_check.js"></script>
 </head>
 <style type="text/css">
     <!-- body {
@@ -71,9 +69,9 @@
     <h3 th:inline="text">プリセットを使用する</h3>
     <form th:action="@{/input}" method="post">
 
-        <input type="button" ame="reflect" value="選択を反映" onclick="reflectButton();" />
-        <input type="button" name="reflectAll" value="全平日に反映" onclick="reflectAllButton();" />
-        <input type="button" name="delete" value="選択を削除" onclick="deleteButton();" /><br>
+        <input type="button" name="reflect" value="選択を反映" id="reflect" />
+        <input type="button" name="reflectAll" value="全平日に反映" id="reflectAll" />
+        <input type="button" name="delete" value="選択を削除" id="delete" /><br>
 
         <br/>
     </form>
@@ -92,7 +90,6 @@
                 <th>プリセット名</th>
             </tr>
         </thead>
-        <script type="text/javascript" src="../static/js/presettable.js"></script>
 
     </table>
 
@@ -111,14 +108,17 @@
         <label>プリセット名</label>
         <input type="text" name="preset">
         <br/>
-        <button class="btn btn-primary w-100 " name="register-reflect" type="submit ">登録して反映</button>
-        <button class="btn btn-primary w-100 " name="reflect" type="submit ">登録せず反映</button>
-        <button class="btn btn-primary w-100 " name="register" type="submit ">登録のみ</button>
+        <input type="button" name="entryReflect" value="登録して反映" id="entryReflect" />
+        <input type="button" name="notEntryReflect" value="登録せず反映" id="notEntryReflect" />
+        <input type="button" name="entry" value="登録のみ" id="entry" /><br>
         <br/>
     </form>
 
     <!-- home.htmlへ遷移 -->
     <button onclick="location.href='./home.html' ">戻る</button>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/all_check.js"></script>
+    <script type="text/javascript" src="../static/js/presettable.js"></script>
 </body>
 
 </html>

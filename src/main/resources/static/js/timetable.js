@@ -1,65 +1,75 @@
-var mytable = document.getElementById("tbl");
+const columnOrder = ['date', 'week', 'startTime', 'endTime', 'restTime', 'workTime', 'overTime', 'remarks']
 
-// JavaScriptで以下json形式を元に勤怠をテーブル表示する
-const timeTableDate = {
-    tableDate: [{
-            "date": "12/01",
-            "week": "木",
-            "startTime": "09:00",
-            "endTime": "18:00",
-            "restTime": "01:00",
-            "workTime": "08:00",
-            "overTime": "00:00",
-            "remarks": ""
-        },
-        {
-            "date": "12/02",
-            "week": "金",
-            "startTime": "09:00",
-            "endTime": "19:00",
-            "restTime": "01:00",
-            "workTime": "09:00",
-            "overTime": "01:00",
-            "remarks": "残業あり"
-        },
-        {
-            "date": "12/05",
-            "week": "月",
-            "startTime": "09:00",
-            "endTime": "19:00",
-            "restTime": "01:00",
-            "workTime": "09:00",
-            "overTime": "01:00",
-            "remarks": "残業あり"
-        }
-    ]
+class Preset {
+    constructor(date, week, startTime, endTime, restTime, workTime, overTime, remarks) {
+        this.date = date
+        this.week = week
+        this.startTime = startTime
+        this.endTime = endTime
+        this.restTime = restTime
+        this.workTime = workTime
+        this.overTime = overTime
+        this.remarks = remarks
+    }
+
+    toTr(order) {
+        const tr = document.createElement('tr')
+        order.forEach((col, i) => {
+            const td = document.createElement('td')
+            td.textContent = this[col]
+            tr.appendChild(td)
+        })
+        return tr
+    }
 }
-for (var i in timeTableDate.tableDate) {
-    var mytr = mytable.insertRow(1 + parseInt(i)); // 表を1行追加
 
-    //thセルの追加
-    var myth = document.createElement("th");
-    myth.innerHTML = " ";
-    mytr.appendChild(myth);
+document.addEventListener('DOMContentLoaded', domFinished);
 
-    //tdセルの追加
-    var mycell1 = mytr.insertCell(1);
-    var mycell2 = mytr.insertCell(2);
-    var mycell3 = mytr.insertCell(3);
-    var mycell4 = mytr.insertCell(4);
-    var mycell5 = mytr.insertCell(5);
-    var mycell6 = mytr.insertCell(6);
-    var mycell7 = mytr.insertCell(7);
-    var mycell8 = mytr.insertCell(8);
+function domFinished() {
+    const presetTable = document.getElementById("tbl");
+    getTimeTable().forEach((pd, index) => {
 
-    //textContentでもいいしinnnerHTMLでもいい
-    mycell1.textContent = timeTableDate.tableDate[i].date;
-    mycell2.textContent = timeTableDate.tableDate[i].week;
-    mycell3.textContent = timeTableDate.tableDate[i].startTime;
-    mycell4.textContent = timeTableDate.tableDate[i].endTime;
-    mycell5.textContent = timeTableDate.tableDate[i].restTime;
-    mycell6.textContent = timeTableDate.tableDate[i].workTime;
-    mycell7.textContent = timeTableDate.tableDate[i].overTime;
-    mycell8.textContent = timeTableDate.tableDate[i].remarks;
+        const newTr = pd.toTr(columnOrder)
+        const topCell = newTr.insertCell(0)
 
+        topCell.appendChild(Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: index }))
+        presetTable.appendChild(newTr)
+    })
+}
+
+function getTimeTable() {
+    const presetDemoData = [
+        new Preset('12/01', '木', '09:00', '18:00', '01:00', '08:00', '01:00', ''),
+        new Preset('12/02', '金', '09:00', '19:00', '01:00', '09:00', '01:00', '残業あり'),
+        new Preset('12/03', '土', '', '', '', '', '', ''),
+        new Preset('12/04', '日', '', '', '', '', '', ''),
+        new Preset('12/05', '月', '09:00', '19:00', '01:00', '09:00', '01:00', '残業あり'),
+        new Preset('12/06', '火', '', '', '', '', '', ''),
+        new Preset('12/07', '水', '', '', '', '', '', ''),
+        new Preset('12/08', '木', '', '', '', '', '', ''),
+        new Preset('12/09', '金', '', '', '', '', '', ''),
+        new Preset('12/10', '土', '', '', '', '', '', ''),
+        new Preset('12/11', '日', '', '', '', '', '', ''),
+        new Preset('12/12', '月', '', '', '', '', '', ''),
+        new Preset('12/13', '火', '', '', '', '', '', ''),
+        new Preset('12/14', '水', '', '', '', '', '', ''),
+        new Preset('12/15', '木', '', '', '', '', '', ''),
+        new Preset('12/16', '金', '', '', '', '', '', ''),
+        new Preset('12/17', '土', '', '', '', '', '', ''),
+        new Preset('12/18', '日', '', '', '', '', '', ''),
+        new Preset('12/19', '月', '', '', '', '', '', ''),
+        new Preset('12/20', '火', '', '', '', '', '', ''),
+        new Preset('12/21', '水', '', '', '', '', '', ''),
+        new Preset('12/22', '木', '', '', '', '', '', ''),
+        new Preset('12/23', '金', '', '', '', '', '', ''),
+        new Preset('12/24', '土', '', '', '', '', '', ''),
+        new Preset('12/25', '日', '', '', '', '', '', ''),
+        new Preset('12/26', '月', '', '', '', '', '', ''),
+        new Preset('12/27', '火', '', '', '', '', '', ''),
+        new Preset('12/28', '水', '', '', '', '', '', ''),
+        new Preset('12/29', '木', '', '', '', '', '', ''),
+        new Preset('12/30', '金', '', '', '', '', '', ''),
+        new Preset('12/31', '土', '', '', '', '', '', ''),
+    ]
+    return presetDemoData
 }
