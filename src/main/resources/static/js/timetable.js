@@ -32,9 +32,20 @@ month = ('0' + month).slice(-2)
 const monthControl = document.querySelector('input[type="month"]');
 monthControl.value = year.toString() + '-' + month.toString();
 
-document.addEventListener('DOMContentLoaded', domFinished);
+document.addEventListener('DOMContentLoaded', createTimeTable);
 
-function domFinished() {
+// 表示月の変更ボタン処理
+document.getElementById('change').onclick = function() {
+    //alert('表示月の変更ボタン処理(テストメッセージ)');
+    //月を変更するリクエストを投げる※idで取れない？
+
+    alert(document.getElementById("calendar"));
+    alert(document.querySelector('#calendar'));
+    createTimeTable();
+}
+
+//タイムテーブル読み込み処理
+function createTimeTable() {
     const presetTable = document.getElementById("tbl");
     getTimeTable().forEach((pd, index) => {
 

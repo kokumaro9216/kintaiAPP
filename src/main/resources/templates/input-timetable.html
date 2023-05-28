@@ -7,8 +7,11 @@
 </head>
 
 <body>
-    <label for="calendar">勤怠月:</label>
-    <input type="month" id="calendar" min="2000-01" value="2023-01">
+    <div>
+        <label for="calendar">勤怠月:</label>
+        <input type="month" id="calendar" min="2000-01" value="2023-01">
+        <input type="button" name="change" value="表示月の変更" id="change" />
+    </div>
 
     <table id="tbl" border="1 ">
         <tr>
@@ -23,6 +26,7 @@
             <th>備考</th>
         </tr>
         <script type="text/javascript" src="../static/js/timetable.js"></script>
+    </table>
 </body>
 
 </html>
