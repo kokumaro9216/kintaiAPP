@@ -23,6 +23,15 @@ class Preset {
     }
 }
 
+var now = new Date();
+const year = now.getFullYear()
+let month = now.getMonth() + 1;
+month = ('0' + month).slice(-2)
+
+//カレンダーの月のデフォルトを当月に変更する
+const monthControl = document.querySelector('input[type="month"]');
+monthControl.value = year.toString() + '-' + month.toString();
+
 document.addEventListener('DOMContentLoaded', domFinished);
 
 function domFinished() {
