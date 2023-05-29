@@ -1,0 +1,27 @@
+@charset "UTF-8";
+h1 {
+  background: #c2edff; /*背景色*/
+  padding: 5px; /*文字の余白*/
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.startmonth {
+  font-size: 16px;
+}
+
+.endmonth {
+  font-size: 16px;
+}
+
+.msg {
+  color: red;
+  font-size: 20px;
+}
+
+div {
+  font-size: 16px;
+}/*# sourceMappingURL=output.css.map */

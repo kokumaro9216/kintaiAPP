@@ -14,7 +14,6 @@ function diffMonth(d1, d2){
   }
 
 function bottunClick(){
-	msg.innerText = '開始 : ' + start.value + ' 終了 : ' + end.value + '期間 : ' + diffMonth(start.value, end.value);
 	const endValue = end.value;
 	const endYear = endValue.substr(0,4)
 	const endMonth = endValue.substr(5)
@@ -22,23 +21,29 @@ function bottunClick(){
 	const startMonth = start.value.substr( 5 )
 	const startDate = new Date(startYear, startMonth -1, "01")
 	const endDate = new Date(endYear, endMonth, "01") -1
-	console.log("a")
-	const array = getDBData(startDate, endDate);
-	console.log("b")
-	console.log(array[0][0])
-	const sumWorkTime = document.getElementById("sumWorkTime");
-	sumWorkTime.innerHTML = getSumWorkTime(array);
-	const averageWorkTime = document.getElementById("averageWorkTime");
-	averageWorkTime.innerHTML = getAverageWorkTime(array);
-	const sumOvertimeWorkTime = document.getElementById("sumOvertimeWorkTime");
-	sumOvertimeWorkTime.innerHTML = getSumOvertimeWorkTime(array);
-	const averageOvertimeWorkTime = document.getElementById("averageOvertimeWorkTime");
-	averageOvertimeWorkTime.innerHTML = getAverageOvertimeWorkTime(array);
-	generate_table(array);
+	if(startDate<endDate){
+		msg.innerText = '開始 : ' + start.value + ' 終了 : ' + end.value + '期間 : ' + diffMonth(start.value, end.value);
+	
+		console.log("a")
+		const array = getData(startDate, endDate);
+		console.log("b")
+		console.log(array[0][0])
+		const sumWorkTime = document.getElementById("sumWorkTime");
+		sumWorkTime.innerHTML = getSumWorkTime(array);
+		const averageWorkTime = document.getElementById("averageWorkTime");
+		averageWorkTime.innerHTML = getAverageWorkTime(array);
+		const sumOvertimeWorkTime = document.getElementById("sumOvertimeWorkTime");
+		sumOvertimeWorkTime.innerHTML = getSumOvertimeWorkTime(array);
+		const averageOvertimeWorkTime = document.getElementById("averageOvertimeWorkTime");
+		averageOvertimeWorkTime.innerHTML = getAverageOvertimeWorkTime(array);
+		generate_table(array);
+	} else {
+		msg.innerText = "入力値が不正です"
+	}
   }
 
   //DBから入力された期間の出勤情報を取得する
-  function getDBData(startDate, endDate){
+  const getData = function(startDate, endDate){
 	// const date1 = new Date(2022, 12, 30, 9, 00, 00);
 	// const date2 = new Date(2022, 12, 30, 18, 00, 00);
 	// const rest = 1

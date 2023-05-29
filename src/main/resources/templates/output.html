@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' href='../static/scss/output.css'>
 <title>出力画面</title>
 </head>
 <body>
 	<h1>出力画面</h1>
 	<form method="get">
-		<input type="month" id="start"  style="display:inline;">～<input type="month" id="end">
+		<input type="month" id="start" class="startmonth" style="display:inline;">～<input type="month" id="end" class="endmonth">
 		<input type="button" name="dateInput" value="反映" id="checkButton">
 	</form>
-	<p id="msg"></p>
+	<p id="msg" class="msg"></p>
 		<br>
 		<div style="display:inline;">合計実働時間：</div>
 		<div id=sumWorkTime style="display:inline;"></div>
