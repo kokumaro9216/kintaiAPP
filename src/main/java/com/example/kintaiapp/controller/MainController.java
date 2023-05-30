@@ -74,7 +74,7 @@ public class MainController {
     public String index(OAuth2AuthenticationToken authentication, Model model) {
       // 画面に表示するために、OAuth2AuthorizedClientService経由で認可済みのクライアント情報を取得しModelに格納
       model.addAttribute("authorizedClient", this.getAuthorizedClient(authentication));
-      return "index";
+      return "output";
     }
 
     @GetMapping("/attributes")
