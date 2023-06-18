@@ -34,27 +34,40 @@ monthControl.value = year.toString() + '-' + month.toString();
 
 document.addEventListener('DOMContentLoaded', createTimeTable);
 
-// 表示月の変更ボタン処理
+/**
+ * 表示月の変更ボタン処理
+ * @url urlは後程
+ * @param 変更する表示月のパラメータ(例:2023-06)
+ */
 document.getElementById('change').onclick = function() {
-    //alert('表示月の変更ボタン処理(テストメッセージ)');
-    //月を変更するリクエストを投げる※idで取れない？
 
-    alert(document.getElementById("calendar"));
-    alert(document.querySelector('#calendar'));
+    var param = document.getElementById("calendar").value;
+    //urlは後程
+    var url = "xxx";
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    //request.send(param);
+
+    //勤怠表再作成の為、既存の表を削除
+    document.getElementById("tbl").remove;
     createTimeTable();
 }
 
-//タイムテーブル読み込み処理
+/**
+ * タイムテーブル読み込み処理
+ */
 function createTimeTable() {
     const presetTable = document.getElementById("tbl");
     getTimeTable().forEach((pd, index) => {
 
-        const newTr = pd.toTr(columnOrder)
-        const topCell = newTr.insertCell(0)
+            const newTr = pd.toTr(columnOrder);
+            const topCell = newTr.insertCell(0);
 
-        topCell.appendChild(Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: index }))
-        presetTable.appendChild(newTr)
-    })
+            topCell.appendChild(Object.assign(document.createElement('input'), { type: "checkbox", name: "ch", value: index }));
+            presetTable.appendChild(newTr);
+        })
+        //勤怠表にid付与
+        //presetTable.setAttribute('id', 'workTbl');
 }
 
 function getTimeTable() {
